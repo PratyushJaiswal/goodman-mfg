@@ -91,5 +91,71 @@ public class Contact {
 			State.sendKeys(text);
 		}
 		
+		@FindBy(id="txtzipcode")
+		public WebElement Zip;
+		public void enterZip(String text){
+			Zip.sendKeys(text);
+		}
+		
+		@FindBy(id="txtphonenumber")
+		public WebElement Phone;
+		public void enterPhone(String text){
+			Phone.sendKeys(text);
+		}
+		
+		@FindBy(id="txtfaxnumber")
+		public WebElement Fax;
+		public void enterFax(String text){
+			Fax.sendKeys(text);
+		}
+		
+		@FindBy(id="txtemail")
+		public WebElement Email;
+		public void enterEmail(String text){
+			Email.sendKeys(text);
+		}
+		
+		@FindBy(id="txtmodel")
+		public WebElement Model;
+		public void enterModel(String text){
+			Model.sendKeys(text);
+		}
+		
+		@FindBy(id="ddlcustomerissue")
+		public WebElement Issue;
+		public void enterCustIssue(String dropdownvalue){
+			Select dd= new Select(Issue);
+			dd.selectByValue(dropdownvalue);
+		}
+		
+		@FindBy(id="txtserialNumber")
+		public WebElement Snumber;
+		public void enterSnumber(String text){
+			Snumber.sendKeys(text);
+		}
+		
+		@FindBy(id="txtadditionalcomment")
+		public WebElement Comments;
+		public void enterComments(String text){
+			Comments.sendKeys(text);
+		}
+		
+		@FindBy(id="content_C006_ctl00_ctl00_C033")
+		public WebElement Cancel;
+		public void clickCancel(){
+			Cancel.click();
+		}
+		
+		@FindBy(id="content_C006_ctl00_ctl00_C014")
+		public WebElement Submit;
+		public void clickSubmit(){
+			Submit.click();
+		}
+		
+		@FindBy(xpath="//div[@id='content_C003_Col01']/div[2]/a")
+		public WebElement ViewLoc;
+		public void clickViewLocation(){
+			ViewLoc.click();
+		}
 		
 }
