@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <parameter name="browserType" value="chrome"/>
+  <test name="Test(failed)">
+    <parameter name="browserType" value="firefox"/>
+    <classes>
+      <class name="frameworkClasses.frameworkClass">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeClass"/>
+          <include name="run"/>
+          <include name="afterClass"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- frameworkClasses.frameworkClass -->
+    </classes>
+  </test> <!-- Test(failed) -->
+  <test name="Test2(failed)">
+    <parameter name="browserType" value="chrome"/>
+    <classes>
+      <class name="frameworkClasses.frameworkClass">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="beforeClass"/>
+          <include name="run"/>
+          <include name="afterClass"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- frameworkClasses.frameworkClass -->
+    </classes>
+  </test> <!-- Test2(failed) -->
+</suite> <!-- Failed suite [Suite] -->
