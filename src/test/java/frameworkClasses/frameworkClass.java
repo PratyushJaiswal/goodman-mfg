@@ -28,13 +28,13 @@ public class frameworkClass {
 		if(browser.equalsIgnoreCase("firefox")){
 			driver = new FirefoxDriver();
 		}else if(browser.equalsIgnoreCase("chrome")){
-			System.setProperty("webdriver.chrome.driver","C://Users//Pratyush//git//RFTTWithPAgeobjectFactory//driver//chromedriver.exe" );
+			System.setProperty("webdriver.chrome.driver",Constants.Chrome_driver );
 			driver = new ChromeDriver();
 		}
 		driver.get(Constants.URL);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("src/utilities/log4j.properties");
+		PropertyConfigurator.configure(Constants.log_Path);
 		driver.get(Constants.URL);
 		hp = new homePageFactory(driver);
 		
@@ -42,7 +42,7 @@ public class frameworkClass {
 	
 	@Test
 	public void run(){
-		
+		hp.notification();
 	}
 	
 	@AfterClass
