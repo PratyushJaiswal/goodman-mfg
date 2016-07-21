@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 public class homePageFactory {
 	static Logger log = Logger.getLogger(homePageFactory.class);
 	WebDriver driver;
-	@FindBy(id = "sb_ifc0")
+	@FindBy(id = "gs_htif0")
 	WebElement elementname;
 	
 	public homePageFactory(WebDriver driver){
