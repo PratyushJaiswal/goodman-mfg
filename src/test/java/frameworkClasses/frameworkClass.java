@@ -34,7 +34,7 @@ public class frameworkClass {
 		driver.get(Constants.URL);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("src/utilities/log4j.properties");
+		PropertyConfigurator.configure("src/test/java/utilities/log4j.properties");
 		driver.get(Constants.URL);
 		hp = new homePageFactory(driver);
 		
@@ -42,7 +42,7 @@ public class frameworkClass {
 	
 	@Test
 	public void run(){
-		
+		hp.notification();
 	}
 	
 	@AfterClass
