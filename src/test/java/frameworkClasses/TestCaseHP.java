@@ -44,6 +44,14 @@ public class TestCaseHP {
 		Hp.clickBanner1();
 	}
 	
+	@Test
+	public void findDealer(){
+		Hp.enterZipcode("77568");
+		Hp.enterMiles("20");
+		Hp.clickFindDealer();
+		driver.navigate().back();
+	}
+	
 	@AfterClass
 	  public void afterClass() {
 			driver.close();
