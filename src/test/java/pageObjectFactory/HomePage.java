@@ -1,10 +1,14 @@
 package pageObjectFactory;
 
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-	
+	static Logger log = Logger.getLogger(homePageFactory.class);
+	WebDriver driver;
 	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a[@href='/about']")
 	public WebElement Banner1;
 		public void clickBanner1(){
@@ -159,6 +163,10 @@ public class HomePage {
 	public WebElement ProdReg;
 		public void clickProdReg(){
 		ProdReg.click();
+		}
+		public HomePage(WebDriver driver){
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
 		}
 
 }
