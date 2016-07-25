@@ -86,11 +86,52 @@ public class TestCaseHP {
 	
 	@Test
 	public void findDealer(){
-		Hp.enterZipcode("77568");
+		Hp.enterZipcode("77479");
 		Hp.enterMiles("20");
 		Hp.clickFindDealer();
+		Assert.assertEquals(driver.getTitle(), "Find A Dealer For Goodman Manufacturing Products");
 		driver.navigate().back();
 	}
+	
+	@Test
+	public void FindMore(){
+		Hp.clickFindMore();
+		Assert.assertEquals(driver.getTitle(), "When To Repair or Replace Your HVAC System | Goodman");
+		driver.navigate().back();
+		}
+	
+	@Test
+	public void BlueLearMore(){
+		Hp.clickBlueLearnMore();
+		Assert.assertEquals(driver.getTitle(), "Buy Environment-friendly HVAC Systems From Goodman");
+		driver.navigate().back();
+		}
+	
+	@Test
+	public void BlueArrow(){
+		Hp.clickBlueArrow();
+		Assert.assertEquals(driver.getTitle(), "Goodman Air Conditioning And Heating Systems");
+		}
+	
+	@Test
+	public void clickSearch(){
+		Hp.SearchProd("test");
+		
+		}
+	
+	@Test
+	public void gotoProdRev(){
+		Hp.gotoProdRev();
+		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
+		driver.navigate().back();
+		}
+	
+	@Test
+	public void gotoEnergyCalc(){
+		Hp.gotoEnergyCalc();
+		Assert.assertEquals(driver.getTitle(), "Save Money With The Energy Calculator From Goodman");
+		driver.navigate().back();
+		}
 	
 	
 	

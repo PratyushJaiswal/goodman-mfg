@@ -9,25 +9,26 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
 	static Logger log = Logger.getLogger(homePageFactory.class);
 	WebDriver driver;
-	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a[@href='/about']")
+	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[2]/div/div[1]/h4/a")
 	public WebElement Banner1;
 		public void clickBanner1(){
 		Banner1.click();
 		}
 	
-	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a[@href='/resources/consumer-finance']")
+	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[3]/div/div[1]/a")
 	public WebElement Banner2;
 		public void clickBanner2(){
 		Banner2.click();
 		}
 	
-	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a[@href='/resources/customer-reviews']")
+	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[4]/div/div[1]/a")
 	public WebElement Banner3;
 		public void clickBanner3(){
 		Banner3.click();
 		}
 	
-	@FindBy(xpath = ".//*[@id='banner-fade']/div/ul/li[5]/div/div[1]/a")
+	
+	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[5]/div/div[1]/a")
 	public WebElement Banner4;
 		public void clickBanner4(){
 		Banner4.click();
@@ -83,7 +84,7 @@ public class HomePage {
 	
 	@FindBy(xpath = "//div[@id='content_C011_Col00']//a[@href='/about/energy-responsibility']")
 	public WebElement BlueLearMoreBtn;
-		public void clickBlueLearMore(){
+		public void clickBlueLearnMore(){
 		BlueLearMoreBtn.click();
 		}
 	
