@@ -7,6 +7,9 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,6 +23,7 @@ public class TestCaseHP {
 	
 	static Logger Log = Logger.getLogger(TestCaseHP.class);
 	private WebDriver driver;
+	public WebDriverWait wait;
 	HomePage Hp;
 	@Parameters("browserType")
 	@BeforeClass
@@ -42,7 +46,7 @@ public class TestCaseHP {
 		
 	  }
 	
-	@Test
+	@Test(priority = 1)
 	public void testPageTitle(){
 		Assert.assertEquals(driver.getTitle(), "Goodman Air Conditioning And Heating Systems");
 	}
@@ -58,6 +62,7 @@ public class TestCaseHP {
 	@Test
 	public void clickOnBanner2(){
 		Hp.clickNavban2();
+		
 		Hp.clickBanner2();
 		Assert.assertEquals(driver.getTitle(), "Monthly Payments For Your Home Comfort System | Goodman");
 		driver.navigate().back();

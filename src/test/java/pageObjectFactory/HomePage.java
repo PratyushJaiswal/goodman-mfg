@@ -27,7 +27,7 @@ public class HomePage {
 		Banner3.click();
 		}
 	
-	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a[@href='/about/plant-locations']")
+	@FindBy(xpath = ".//*[@id='banner-fade']/div/ul/li[5]/div/div[1]/a")
 	public WebElement Banner4;
 		public void clickBanner4(){
 		Banner4.click();
@@ -163,6 +163,12 @@ public class HomePage {
 	public WebElement ProdReg;
 		public void clickProdReg(){
 		ProdReg.click();
+		}
+		
+	@FindBy(xpath = "//div[@class='gm-home-banner-left']//a")
+	public WebElement learnMore;
+		public void clickLoadMore(){
+			learnMore.click();
 		}
 		public HomePage(WebDriver driver){
 			this.driver = driver;
