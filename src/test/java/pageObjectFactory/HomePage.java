@@ -1,9 +1,13 @@
 package pageObjectFactory;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
@@ -94,11 +98,29 @@ public class HomePage {
 		BlueArrow.click();
 		}
 	
-	@FindBy(xpath = "//input[@id='content_C020_ctl00_ctl00_searchTextBox']")
-	public WebElement SearchProd;
-		public void SearchProd(String text){
-		SearchProd.sendKeys(text);
+	@FindBy(id = "content_C020_ctl00_ctl00_searchTextBox")
+	public WebElement searchBox;
+	
+	@FindBys( {
+		@FindBy (id = "content_C020_ctl00_ctl00_searchTextBox-list"),
+		@FindBy (xpath = "//ul[@id='content_C020_ctl00_ctl00_searchTextBox_listbox']/li"),
+		
+			})
+	List<WebElement> searchSelect;
+	
+		public void selectAutoSearch(String searchKey, int index){
+		
+			searchBox.sendKeys(searchKey);
+			if(searchSelect.size()>= index){
+				searchSelect.get(index).click();
+			} else if (searchSelect.size()==0){
+				searchBox.sendKeys(Keys.ENTER);
+			}else {
+				System.out.println("index is greater than the found element");
 		}
+		
+	}
+		
 	
 	@FindBy(xpath = "//div[@id='content_C023_Col00']//a[@href='/resources/customer-reviews']")
 	public WebElement ProdRev;

@@ -115,7 +115,7 @@ public class TestCaseHP {
 	
 	@Test
 	public void clickSearch(){
-		Hp.SearchProd("test");
+		Hp.selectAutoSearch("air", 1);
 		
 		}
 	
