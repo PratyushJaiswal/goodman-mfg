@@ -49,89 +49,179 @@ public class TestCaseHP {
 	@Test(priority = 1)
 	public void testPageTitle(){
 		Assert.assertEquals(driver.getTitle(), "Goodman Air Conditioning And Heating Systems");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
-	@Test
+	@Test (priority = 2)
 	public void clickOnBanner1(){
 		Hp.clickNavban1();
 		Hp.clickBanner1();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Reliable Heating & Cooling Systems From Goodman Brand");
 		driver.navigate().back();
 	}
 	
-	@Test
+	@Test (priority = 3)
 	public void clickOnBanner2(){
 		Hp.clickNavban2();
-		
 		Hp.clickBanner2();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Monthly Payments For Your Home Comfort System | Goodman");
 		driver.navigate().back();
 	}
 	
-	@Test
+	@Test (priority = 4)
 	public void clickOnBanner3(){
 		Hp.clickNavban3();
 		Hp.clickBanner3();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
 	}
 	
-	@Test
+	@Test (priority = 5)
 	public void clickOnBanner4(){
 		Hp.clickNavban4();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Hp.clickBanner4();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Goodman Manufacturing Plant Locations");
 		driver.navigate().back();
 	}
 	
-	@Test
+	@Test (priority=6)
 	public void findDealer(){
 		Hp.enterZipcode("77479");
 		Hp.enterMiles("20");
 		Hp.clickFindDealer();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Find A Dealer For Goodman Manufacturing Products");
 		driver.navigate().back();
 	}
 	
-	@Test
+	@Test (priority=7)
 	public void FindMore(){
 		Hp.clickFindMore();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "When To Repair or Replace Your HVAC System | Goodman");
 		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 	
-	@Test
-	public void BlueLearMore(){
+	@Test(priority=8)
+	public void BlueLearnMore(){
 		Hp.clickBlueLearnMore();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Buy Environment-friendly HVAC Systems From Goodman");
 		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 	
-	@Test
+	@Test(priority=9)
 	public void BlueArrow(){
 		Hp.clickBlueArrow();
 		Assert.assertEquals(driver.getTitle(), "Goodman Air Conditioning And Heating Systems");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 	
-	@Test
+	@Test(priority=10)
 	public void clickSearch(){
 		Hp.selectAutoSearch("air", 1);
-		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Search Result");
+		driver.navigate().back();
 		}
 	
-	@Test
+	@Test(priority=11)
 	public void gotoProdRev(){
 		Hp.gotoProdRev();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
 		}
 	
-	@Test
+	@Test(priority=12)
 	public void gotoEnergyCalc(){
 		Hp.gotoEnergyCalc();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Save Money With The Energy Calculator From Goodman");
 		driver.navigate().back();
 		}
+	
+	@Test(priority=13)
+	public void Previous(){
+		Hp.clickPrev();
+		//Assert.assertEquals(Hp.getElement(), "Ductless Systems");
+	}
+	
+	@Test(priority=14)
+	public void Next(){
+		Hp.clickNext();
+		//Assert.assertEquals(Hp.getName(), "Air Handlers");
+		
+	}
+	
+	@Test(priority=15)
+	public void clickAC(){
+		Hp.clickAC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Air Conditioners by Goodman Air Conditioning & Heating");
+		driver.navigate().back();
+	}
+	
+	@Test(priority=16)
+	public void viewAll(){
+		Hp.clickViewAll();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Check Out Goodman Manufacturing's Product Range");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test(priority=17)
+	public void gotoGF(){
+		Hp.clickGF();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Gas Furnaces by Goodman Air Conditioning & Heating");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test(priority=18)
+	public void gotoProdRev2(){
+		Hp.gotoProdRev2();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test(priority=19)
+	public void gotoGreenLearnMore(){
+		Hp.clickGreenLearnMore();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Buy Environment-friendly HVAC Systems From Goodman");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test(priority=21)
+	public void gotoRI(){
+		Hp.clickRebateInc();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables & Efficiency - DSIRE");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test(priority=20)
+	public void gotoProdReg(){
+		Hp.clickProdReg();
+		Assert.assertEquals(driver.getTitle(), "Register Your Goodman Product On The Website Today");
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
 	
 	
 	

@@ -1,14 +1,17 @@
 package pageObjectFactory;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class HomePage {
 	static Logger log = Logger.getLogger(homePageFactory.class);
@@ -86,7 +89,7 @@ public class HomePage {
 		FindMoreBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C011_Col00']//a[@href='/about/energy-responsibility']")
+	@FindBy(xpath = "//div[@id='content_C006_Col00']//a[@href = '/about/energy-responsibility']")
 	public WebElement BlueLearMoreBtn;
 		public void clickBlueLearnMore(){
 		BlueLearMoreBtn.click();
@@ -111,6 +114,7 @@ public class HomePage {
 		public void selectAutoSearch(String searchKey, int index){
 		
 			searchBox.sendKeys(searchKey);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(searchSelect.size()>= index){
 				searchSelect.get(index).click();
 			} else if (searchSelect.size()==0){
@@ -136,14 +140,28 @@ public class HomePage {
 	
 	@FindBy(xpath = "//div[@id='owl-demo']//div[@class='owl-prev']")
 	public WebElement Prev;
-		public void clickPrev(){
+	public void clickPrev(){
 		Prev.click();
 		}
+	
+	@FindBy(xpath="//div[@id='owl-demo']/div[1]/div/div[9]/div/a/div/div/span")
+	public WebElement Ductless;
+		public void getElement(){
+			Ductless.getText();
+		}
+	
 	
 	@FindBy(xpath = "//div[@id='owl-demo']//div[@class='owl-next']")
 	public WebElement Next;
 		public void clickNext(){
 		Next.click();
+		}
+	
+	
+	@FindBy(xpath= "//div[@id='owl-demo']/div[1]/div/div[5]/div/div/a/div/span")
+	public WebElement air;
+		public void getName(){
+		air.getText();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C046_Col00']//a[@href='/products']")
