@@ -12,13 +12,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import pageObjectFactory.About;
+import pageObjectFactory.HeaderPF;
 import utilities.Constants;
 
 public class TestCaseAbout {
 	static Logger log = Logger.getLogger(frameworkClass.class);
 	private WebDriver driver;
-	About about;
+	HeaderPF header;
 	@Parameters("browserType")
 	@BeforeClass
 	  public void beforeClass(String browser) {
@@ -34,21 +34,21 @@ public class TestCaseAbout {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		PropertyConfigurator.configure(Constants.log_Path);
 		driver.get(Constants.URL);
-		about = new About(driver);
+		header = new HeaderPF(driver);
 	}
 	
 	@Test
 	public void clickImageLinks(){
-		about.clickAbout();
-		about.clickAboutImages(1);
+		header.clickAbout();
+		header.clickAboutImages(1);
 		driver.navigate().back();
 	}
 	
 	@Test
 	public void clickRLinks(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		about.clickAbout();
-		about.clickAboutLinks(0);;
+		header.clickAbout();
+		header.clickAboutLinks(0);;
 		driver.navigate().to(Constants.URL);
 	}
 	

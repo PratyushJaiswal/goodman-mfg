@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
-public class About {
+public class HeaderPF {
 	WebDriver driver;
 	@FindBy(xpath = "//div[@id='menu']/ul/li[1]")
 	public WebElement About;
@@ -80,7 +80,7 @@ public class About {
 		} )
 	public List<WebElement> SupportLinks;
 	
-	public About(WebDriver driver){
+	public HeaderPF(WebDriver driver){
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
