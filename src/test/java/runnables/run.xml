@@ -4,15 +4,18 @@
     <test name="Test">
         <parameter name="browserType" value="firefox"/>
         <classes>
-      <class name="frameworkClasses.frameworkClass"/>
-     
+      <class name="frameworkClasses.TestCaseHP">
+      	<methods>
+      		<include name="BlueLearnMore"/>
+      	</methods>
+     </class>
     </classes>
   </test>
-  <test name="Test2">
+  <!-- <test name="Test2">
         <parameter name="browserType" value="chrome"/>
         <classes>
-      <class name="frameworkClasses.frameworkClass"/>
+      <class name="frameworkClasses.TestCaseHP"/>
      
     </classes>
-  </test>
+  </test> -->
   </suite>
