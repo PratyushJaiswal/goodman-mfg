@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -47,7 +48,12 @@ public class TestCaseAbout {
 	public void clickRLinks(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		about.clickAbout();
-		about.clickAboutImages(1);
-		driver.navigate().back();
+		about.clickAboutLinks(0);;
+		driver.navigate().to(Constants.URL);
 	}
+	
+	@AfterClass
+	  public void afterClass() {
+			driver.close();
+	  }
 }
