@@ -22,6 +22,8 @@ public class HeaderPF {
 	public WebElement Warranty;
 	@FindBy(xpath ="//div[@id='menu']/ul/li[6]")
 	public WebElement Registration;
+	@FindBy(xpath ="//div[@id='header_TA575B027005_Col01']/div/div/a")
+	public WebElement FindDealer;
 	
 	
 	@FindBys( {
@@ -94,7 +96,10 @@ public class HeaderPF {
 	}
 	
 	public void clickAboutLinks(int index){
+		System.out.println("content"+ AboutLinks.size());
+		System.out.println(AboutLinks.get(0).getText());
 		AboutLinks.get(index).click();
+		System.out.println(AboutLinks.get(1).getTagName());
 	}
 	
 	public void clickProducts(){
@@ -140,4 +145,10 @@ public class HeaderPF {
 	public void clickRegistration(){
 		Registration.click();
 	}
+	
+	public void clickFindDealer(){
+		FindDealer.click();
+	}
+	
+	
 }
