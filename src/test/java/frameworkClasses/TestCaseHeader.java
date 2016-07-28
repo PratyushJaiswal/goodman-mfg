@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import pageObjectFactory.HeaderPF;
 import utilities.Constants;
 
-public class TestCaseAbout {
+public class TestCaseHeader {
 	static Logger log = Logger.getLogger(frameworkClass.class);
 	private WebDriver driver;
 	HeaderPF header;
