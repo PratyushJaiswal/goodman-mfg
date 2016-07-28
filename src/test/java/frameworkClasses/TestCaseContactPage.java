@@ -44,7 +44,7 @@ public class TestCaseContactPage {
 	
 	@Test
 	public void contactFormFill(){
-		//footer.clickContact();
+		footer.clickContact();
 		contact.selectDropdown("Contractor");
 		contact.enterOrg("softway");
 		contact.enterFname("Syed");

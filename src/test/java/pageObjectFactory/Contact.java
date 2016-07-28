@@ -1,11 +1,17 @@
 package pageObjectFactory;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class Contact {
-		
+		WebDriver driver;
+		public Contact(WebDriver driver){
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
+		}
 		@FindBy(xpath="//div[@id='content_C014_Col00']/div[2]/p[2]/a[1]/strong")
 		public WebElement Warranty;
 		public void clickWarranty(){
