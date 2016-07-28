@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjectFactory.Contact;
+import pageObjectFactory.Footer;
 import utilities.Constants;
 
 public class TestCaseContactPage {
@@ -20,6 +21,7 @@ public class TestCaseContactPage {
 	private String sTestCaseName;
 	private int iTestCaseRow;
 	Contact contact;
+	Footer footer;
 	@Parameters("browserType")
 	@BeforeClass
 	  public void beforeClass(String browser) {
@@ -35,12 +37,14 @@ public class TestCaseContactPage {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		PropertyConfigurator.configure(Constants.log_Path);
 		driver.get(Constants.URL);
-		contact = new Contact();
+		contact = new Contact(driver);
+		footer = new Footer(driver);
 		
 	  }
 	
 	@Test
 	public void contactFormFill(){
+		//footer.clickContact();
 		contact.selectDropdown("Contractor");
 		contact.enterOrg("softway");
 		contact.enterFname("Syed");
