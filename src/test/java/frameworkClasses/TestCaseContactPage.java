@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -59,9 +60,13 @@ public class TestCaseContactPage {
 	    contact.enterFax("9980818544");
 	    contact.enterEmail("syed.zakaulla@softway.com");
 	    contact.enterModel("ZP110");
-	    contact.selectDropdown("Equipment not working");
+	    contact.selectCustIssue("Misc");
 	    contact.enterSnumber("112195");
 	    contact.enterComments("This is a test message from softway");
 	    contact.clickSubmit();
+	}
+	@AfterClass
+	public void afterClass() {
+		driver.close();
 	}
 }
