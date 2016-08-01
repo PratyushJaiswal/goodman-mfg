@@ -33,7 +33,7 @@ public class TestCaseHP {
 			System.setProperty("webdriver.chrome.driver",Constants.Chrome_driver );
 			driver = new ChromeDriver();
 		}
-		driver.get(Constants.URL);
+		//driver.get(Constants.URL);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		PropertyConfigurator.configure(Constants.log_Path);
@@ -169,8 +169,9 @@ public class TestCaseHP {
 	
 	@Test(priority=16)
 	public void viewAll(){
-		Hp.clickViewAll();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickViewAll();
+		
 		Assert.assertEquals(driver.getTitle(), "Check Out Goodman Manufacturing's Product Range");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

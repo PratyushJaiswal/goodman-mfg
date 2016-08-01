@@ -5,12 +5,16 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class HomePage {
@@ -83,13 +87,13 @@ public class HomePage {
 		FindDealerBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C003_Col01']//a[@href='/resources/repair-or-replace']")
+	@FindBy(xpath = "//div[@id='content_C003_Col01']//a")
 	public WebElement FindMoreBtn;
 		public void clickFindMore(){
 		FindMoreBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C006_Col00']//a[@href = '/about/energy-responsibility']")
+	@FindBy(xpath = "//div[@id='content_C011_Col00']/div/a")
 	public WebElement BlueLearMoreBtn;
 		public void clickBlueLearnMore(){
 		BlueLearMoreBtn.click();
@@ -164,10 +168,14 @@ public class HomePage {
 		air.getText();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C046_Col00']//a[@href='/products']")
+	@FindBy(xpath = "//div[@class='sfContentBlock view-all-btn']//a")
 	public WebElement ViewAll;
 		public void clickViewAll(){
-		ViewAll.click();
+		//ViewAll.click();
+			
+			Actions actions = new Actions(driver);
+
+			actions.moveToElement(ViewAll).click().perform();
 		}
 	
 	@FindBy(xpath = "//div[@id='owl-demo']//a[@href='/products/air-conditioners']")
