@@ -178,11 +178,14 @@ public class HomePage {
 		public void clickAC(){
 		AC.click();
 		}
-	
+	@FindBy(xpath ="//div[@id='owl-demo']/div[1]/div/div[3]/div")
+	public WebElement GasFurnace;
 	@FindBy(xpath = "//div[@class='owl-item']//a[@href='/products/gas-furnaces/80-afue-gas-furnaces']")
 	public WebElement GF;
 		public void clickGF(){
-		GF.click();
+		Actions action = new Actions(driver);
+		action.moveToElement(GasFurnace).build().perform();
+		action.moveToElement(GF).click().build().perform();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C025_Col00']//a[@href='/resources/customer-reviews']")

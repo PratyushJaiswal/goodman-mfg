@@ -99,8 +99,9 @@ public class TestCaseHP {
 	
 	@Test (priority=7)
 	public void FindMore(){
-		Hp.clickFindMore();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickFindMore();
+		
 		Assert.assertEquals(driver.getTitle(), "When To Repair or Replace Your HVAC System | Goodman");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -179,8 +180,9 @@ public class TestCaseHP {
 	
 	@Test(priority=17)
 	public void gotoGF(){
-		Hp.clickGF();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickGF();
+		
 		Assert.assertEquals(driver.getTitle(), "Gas Furnaces by Goodman Air Conditioning & Heating");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -188,8 +190,9 @@ public class TestCaseHP {
 	
 	@Test(priority=18)
 	public void gotoProdRev2(){
-		Hp.gotoProdRev2();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.gotoProdRev2();
+		
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -206,8 +209,9 @@ public class TestCaseHP {
 	
 	@Test(priority=21)
 	public void gotoRI(){
-		Hp.clickRebateInc();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickRebateInc();
+		
 		Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables & Efficiency - DSIRE");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

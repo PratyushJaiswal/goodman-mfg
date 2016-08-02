@@ -5,6 +5,7 @@
         <parameter name="browserType" value="firefox"/>
         <classes>
       <class name="frameworkClasses.TestCaseHP">
+         
           
           </class>
      
