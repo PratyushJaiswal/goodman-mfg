@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+  <test name="Test">
+       <parameter name="browserType" value="firefox"/>
+    <classes>
+    
+      <class name="frameworkClasses.TestCaseHeader"/>
+      <class name="frameworkClasses.frameworkClass"/>
+      <class name="frameworkClasses.TestCaseFooter"/>
+      <class name="frameworkClasses.TestCaseHP"/>
+      <class name="frameworkClasses.TestCaseContactPage"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
