@@ -36,7 +36,8 @@ public class HeaderPF {
 	@FindBys( {
 			@FindBy(xpath ="//div[@id='menu']/ul/li[1]"),
 			@FindBy(className = "sub-menu-right"),
-			@FindBy(tagName = "li")
+			@FindBy(tagName = "li"),
+			@FindBy(tagName="a")
 			} )
 	public List<WebElement> AboutLinks;
 	
@@ -50,7 +51,8 @@ public class HeaderPF {
 	@FindBys( {
 			@FindBy(xpath ="//div[@id='menu']/ul/li[2]"),
 			@FindBy(className = "sub-menu-right"),
-			@FindBy(tagName = "li")
+			@FindBy(tagName = "li"),
+			@FindBy(tagName = "a")
 		} )
 	public List<WebElement> ProductLinks;
 	
@@ -64,7 +66,8 @@ public class HeaderPF {
 	@FindBys( {
 			@FindBy(xpath ="//div[@id='menu']/ul/li[3]"),
 			@FindBy(className = "sub-menu-right"),
-			@FindBy(tagName = "li")
+			@FindBy(tagName = "li"),
+			@FindBy(tagName = "a")
 		} )
 	public List<WebElement> ResourceLinks;
 	
@@ -78,7 +81,8 @@ public class HeaderPF {
 	@FindBys( {
 			@FindBy(xpath ="//div[@id='menu']/ul/li[4]"),
 			@FindBy(className = "sub-menu-right"),
-			@FindBy(tagName = "li")
+			@FindBy(tagName = "li"),
+			@FindBy(tagName = "a")
 		} )
 	public List<WebElement> SupportLinks;
 	
@@ -96,10 +100,10 @@ public class HeaderPF {
 	}
 	
 	public void clickAboutLinks(int index){
-		System.out.println("content"+ AboutLinks.size());
-		System.out.println(AboutLinks.get(0).getText());
+		//System.out.println("content"+ AboutLinks.size());
+		//System.out.println(AboutLinks.get(0).getText());
 		AboutLinks.get(index).click();
-		System.out.println(AboutLinks.get(1).getTagName());
+		//System.out.println(AboutLinks.get(1).getTagName());
 	}
 	
 	public void clickProducts(){
@@ -111,7 +115,7 @@ public class HeaderPF {
 	}
 			
 	public void clickProductLinks(int index){
-		AboutLinks.get(index).click();
+		ProductLinks.get(index).click();
 	}
 	
 	public void clickResource(){

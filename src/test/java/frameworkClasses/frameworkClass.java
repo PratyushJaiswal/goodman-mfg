@@ -40,10 +40,10 @@ public class frameworkClass {
 		
 	  }
 	
-	@Test
+	/*@Test
 	public void run(){
 		hp.notification();
-	}
+	}*/
 	
 	
 	
