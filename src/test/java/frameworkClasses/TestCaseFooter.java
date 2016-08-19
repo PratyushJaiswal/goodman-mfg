@@ -91,6 +91,7 @@ public class TestCaseFooter {
 	public void BecomeDealer(){
 		footer.clickBecomeDealer();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
 		//Get the current window handle
 		String windowHandle = driver.getWindowHandle();
 
@@ -100,6 +101,8 @@ public class TestCaseFooter {
 		//Use the list of window handles to switch between windows
 		driver.switchTo().window((String) tabs.get(1));
 		Assert.assertEquals(driver.getTitle(), "Welcome to Goodman Manufacturing");
+		System.out.println(driver.getTitle());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.close();
 		//Switch back to original window
 		driver.switchTo().window(windowHandle);

@@ -4,9 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -108,7 +110,8 @@ public class TestCaseHP {
 		}
 	
 	@Test(priority=8)
-	public void BlueLearnMore(){
+	public void BlueLearnMore() {
+		
 		Hp.clickBlueLearnMore();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Buy Environment-friendly HVAC Systems From Goodman");
@@ -124,10 +127,11 @@ public class TestCaseHP {
 		}
 	
 	@Test(priority=10)
-	public void clickSearch(){
+	public void clickSearch() throws InterruptedException{
 		Hp.selectAutoSearch("air", 1);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Search Result");
+		Thread.sleep(3000);
 		driver.navigate().back();
 		}
 	
@@ -182,14 +186,13 @@ public class TestCaseHP {
 	public void gotoGF(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Hp.clickGF();
-		
-		Assert.assertEquals(driver.getTitle(), "Gas Furnaces by Goodman Air Conditioning & Heating");
+		Assert.assertEquals(driver.getTitle(), "Shop for 80% AFUEs from Goodman AC & Heating");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@Test(priority=18)
-	public void gotoProdRev2(){
+	public void clickProdRev2() throws InterruptedException{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Hp.gotoProdRev2();
 		

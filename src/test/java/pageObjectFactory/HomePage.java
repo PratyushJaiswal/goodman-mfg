@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
@@ -88,10 +90,13 @@ public class HomePage {
 		FindMoreBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C011_Col00']/div/a")
-	public WebElement BlueLearMoreBtn;
-		public void clickBlueLearnMore(){
-		BlueLearMoreBtn.click();
+	@FindBy(xpath = "//div[@class='sf_cols magnetic']//a[contains( text(), 'Learn More')]")
+	public WebElement BlueLearnMoreBtn;
+		public void clickBlueLearnMore() {
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+BlueLearnMoreBtn.getLocation().x+")");
+			BlueLearnMoreBtn.click();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C013_Col00']//a[@href='#']")
@@ -111,6 +116,9 @@ public class HomePage {
 	List<WebElement> searchSelect;
 	
 		public void selectAutoSearch(String searchKey, int index){
+			
+			//Scroll to the web element
+			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+searchBox.getLocation().x+")");
 		
 			searchBox.sendKeys(searchKey);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -183,15 +191,24 @@ public class HomePage {
 	@FindBy(xpath = "//div[@class='owl-item']//a[@href='/products/gas-furnaces/80-afue-gas-furnaces']")
 	public WebElement GF;
 		public void clickGF(){
+			//((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+GasFurnace.getLocation().x+")");
 		Actions action = new Actions(driver);
 		action.moveToElement(GasFurnace).build().perform();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//Thread.sleep(5000);
 		action.moveToElement(GF).click().build().perform();
+			
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C025_Col00']//a[@href='/resources/customer-reviews']")
+	@FindBy(xpath = "//div[@class='sf_cols goodman-reviews magnetic']//div//a")
 	public WebElement ProdRev2;
-		public void gotoProdRev2(){
-		ProdRev2.click();
+		public void gotoProdRev2() throws InterruptedException{
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+ProdRev2.getLocation().x+")");
+			Thread.sleep(5000);
+			/*Actions action = new Actions(driver);
+			action.moveToElement(ProdRev2).click().build().perform();*/
+			ProdRev2.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C036_Col00']//a[@href='/about/energy-responsibility']")
