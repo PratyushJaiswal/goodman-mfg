@@ -13,6 +13,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 	static Logger log = Logger.getLogger(homePageFactory.class);
@@ -199,8 +202,9 @@ public class HomePage {
 		action.moveToElement(GF).click().build().perform();
 			
 		}
-	
-	@FindBy(xpath = "//div[@class='sf_cols goodman-reviews magnetic']//div//a")
+	@FindBy(xpath = ".//*[@id='content_C025_Col00']/div/h2")
+	public WebElement scroll;
+	@FindBy(xpath = "//div[@id='content_C025_Col00']//a[@href='/resources/customer-reviews']")
 	public WebElement ProdRev2;
 		public void gotoProdRev2() throws InterruptedException{
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -209,6 +213,10 @@ public class HomePage {
 			Actions action = new Actions(driver);
 			action.moveToElement(ProdRev2).click().build().perform();
 			//ProdRev2.click();
+			/*Actions action = new Actions(driver);
+			action.moveToElement(ProdRev2).click().build().perform();*/
+			Thread.sleep(5000);
+			ProdRev2.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C036_Col00']//a[@href='/about/energy-responsibility']")
