@@ -1,5 +1,6 @@
 package frameworkClasses;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -215,8 +216,19 @@ public class TestCaseHP {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Hp.clickRebateInc();
 		
-		Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables & Efficiency - DSIRE");
-		driver.navigate().back();
+		String windowHandle = driver.getWindowHandle();
+
+		//Get the list of window handles
+		ArrayList tabs = new ArrayList (driver.getWindowHandles());
+		
+		//Use the list of window handles to switch between windows
+		driver.switchTo().window((String) tabs.get(1));
+		//Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables &amp; Efficiency&reg; - DSIRE");
+		System.out.println(driver.getTitle());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.close();
+		//Switch back to original window
+		driver.switchTo().window(windowHandle);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	

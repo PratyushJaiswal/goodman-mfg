@@ -206,9 +206,9 @@ public class HomePage {
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+ProdRev2.getLocation().x+")");
 			Thread.sleep(5000);
-			/*Actions action = new Actions(driver);
-			action.moveToElement(ProdRev2).click().build().perform();*/
-			ProdRev2.click();
+			Actions action = new Actions(driver);
+			action.moveToElement(ProdRev2).click().build().perform();
+			//ProdRev2.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C036_Col00']//a[@href='/about/energy-responsibility']")
