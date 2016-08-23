@@ -4,11 +4,12 @@
   <test name="Test">
        <parameter name="browserType" value="firefox"/>
     <classes>
-     <class name="frameworkClasses.TestCaseHP">
+    <class name="frameworkClasses.TestCaseContactPage"/>
+     <!-- <class name="frameworkClasses.TestCaseHP">
      	<methods>
      	<include name="clickProdRev2"></include>
      	</methods>
-     	</class>
+     	</class> -->
       <!-- <class name="frameworkClasses.TestCaseHeader"/>
       <class name="frameworkClasses.frameworkClass"/>
       <class name="frameworkClasses.TestCaseFooter"/>

@@ -155,8 +155,8 @@ public class TestCaseHP {
 	@Test(priority=13)
 	public void Previous(){
 		Hp.clickPrev();
-		//Assert.assertEquals(Hp.getElement(), "Ductless Systems");
-	}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
 	
 	@Test(priority=14)
 	public void Next(){
@@ -197,10 +197,10 @@ public class TestCaseHP {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Hp.gotoProdRev2();
 		
-		/*Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
+		//Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-*/	}
+	}
 	
 	@Test(priority=19)
 	public void gotoGreenLearnMore(){

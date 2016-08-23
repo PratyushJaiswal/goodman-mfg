@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage {
 	static Logger log = Logger.getLogger(homePageFactory.class);
@@ -151,6 +153,7 @@ public class HomePage {
 	@FindBy(xpath = "//div[@id='owl-demo']//div[@class='owl-prev']")
 	public WebElement Prev;
 	public void clickPrev(){
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+searchBox.getLocation().x+")");
 		Prev.click();
 		}
 	
@@ -202,20 +205,16 @@ public class HomePage {
 		action.moveToElement(GF).click().build().perform();
 			
 		}
-	@FindBy(xpath = ".//*[@id='content_C025_Col00']/div/h2")
+	
+	@FindBy(xpath = "//div[@id='content_C025_Col00']/div/h2")
 	public WebElement scroll;
-	@FindBy(xpath = "//div[@id='content_C025_Col00']//a[@href='/resources/customer-reviews']")
+	@FindBy(xpath = "//div[@id='content_C025_Col00']/div/div/a")
 	public WebElement ProdRev2;
 		public void gotoProdRev2() throws InterruptedException{
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+ProdRev2.getLocation().x+")");
-			Thread.sleep(5000);
-			Actions action = new Actions(driver);
-			action.moveToElement(ProdRev2).click().build().perform();
-			//ProdRev2.click();
-			/*Actions action = new Actions(driver);
-			action.moveToElement(ProdRev2).click().build().perform();*/
-			Thread.sleep(5000);
+			JavascriptExecutor js =(JavascriptExecutor)driver;
+			js.executeScript("window.scrollTo(0,"+scroll.getLocation().x+")");
+			Thread.sleep(1000);
 			ProdRev2.click();
 		}
 	

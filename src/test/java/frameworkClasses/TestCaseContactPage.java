@@ -9,14 +9,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjectFactory.Contact;
 import pageObjectFactory.Footer;
 import utilities.Constants;
+import utilities.ExcelUtility;
 
 public class TestCaseContactPage {
+	//public String am,org,FN,LN,Title,Add1,Add2,city,state,zipcode,phone,Fax,e_mail,Model,Issue,SN,comment;
 	static Logger log = Logger.getLogger(frameworkClass.class);
 	private WebDriver driver;
 	private String sTestCaseName;
@@ -42,31 +45,58 @@ public class TestCaseContactPage {
 		footer = new Footer(driver);
 		
 	  }
-	
-	@Test
-	public void contactFormFill(){
+	/*@Test(dataProvider = "Authentication")
+	public void test(String fir, String sec){
+		System.out.println(fir);
+		//System.out.println("test");
+		System.out.println(sec);
+		
+	}*/
+	@Test(dataProvider="Authentication")
+	public void contactFormFill(String am,String org,String FN,String LN,String Title,String Add1,String Add2,String city,String state,String zipcode,String phone,String Fax,String e_mail,String Model,String Issue,String SN,String comment){
 		footer.clickContact();
-		contact.selectDropdown("Contractor");
-		contact.enterOrg("softway");
-		contact.enterFname("Syed");
-		contact.enterLname("Zakaulla");
-		contact.enterTitle("Software Engineer");
-		contact.enterAddress1("132, HBR layout");
-		contact.enterAddress2("Kalyan Nagar");
-		contact.enterCity("Bangalore");
-		contact.enterState("Karnataka");
-		contact.enterZip("560043");
-	    contact.enterPhone("9980818544");
-	    contact.enterFax("9980818544");
-	    contact.enterEmail("syed.zakaulla@softway.com");
-	    contact.enterModel("ZP110");
-	    contact.selectCustIssue("Misc");
-	    contact.enterSnumber("112195");
-	    contact.enterComments("This is a test message from softway");
+		contact.selectDropdown(am);
+		contact.enterOrg(org);
+		contact.enterFname(FN);
+		contact.enterLname(LN);
+		contact.enterTitle(Title);
+		contact.enterAddress1(Add1);
+		contact.enterAddress2(Add2);
+		contact.enterCity(city);
+		contact.enterState(state);
+		contact.enterZip(zipcode);
+	    contact.enterPhone(phone);
+	    contact.enterFax(Fax);
+	    contact.enterEmail(e_mail);
+	    contact.enterModel(Model);
+	    contact.selectCustIssue(Issue);
+	    contact.enterSnumber(SN);
+	    contact.enterComments(comment);
 	    contact.clickSubmit();
 	}
-	@AfterClass
+	
+	 @DataProvider
+	  
+	   public Object[][] Authentication() throws Exception{
+	  
+	      // Setting up the Test Data Excel file
+	   ExcelUtility.setExcelFile(Constants.File_Path, "ContactUs");
+	   sTestCaseName = this.toString();
+	   
+	   sTestCaseName = ExcelUtility.getTestCaseName(this.toString());
+	   
+	   iTestCaseRow = ExcelUtility.getRowContains(sTestCaseName, 0);
+	   System.out.println(iTestCaseRow);
+	  
+	    
+	      Object[][] testObjArray = ExcelUtility.getTableArray(Constants.File_Path,"ContactUs",iTestCaseRow);
+	  
+	       return (testObjArray);
+	       
+	   }
+	
+	/*@AfterClass
 	public void afterClass() {
 		driver.close();
-	}
+	}*/
 }
