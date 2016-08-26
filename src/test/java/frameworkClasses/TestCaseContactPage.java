@@ -18,6 +18,7 @@ import pageObjectFactory.Footer;
 import utilities.Constants;
 import utilities.ExcelUtility;
 
+
 public class TestCaseContactPage {
 	//public String am,org,FN,LN,Title,Add1,Add2,city,state,zipcode,phone,Fax,e_mail,Model,Issue,SN,comment;
 	static Logger log = Logger.getLogger(frameworkClass.class);
@@ -73,6 +74,7 @@ public class TestCaseContactPage {
 	    contact.enterSnumber(SN);
 	    contact.enterComments(comment);
 	    contact.clickSubmit();
+	    driver.navigate().to(Constants.URL);
 	}
 	
 	 @DataProvider
@@ -80,23 +82,16 @@ public class TestCaseContactPage {
 	   public Object[][] Authentication() throws Exception{
 	  
 	      // Setting up the Test Data Excel file
-	   ExcelUtility.setExcelFile(Constants.File_Path, "ContactUs");
-	   sTestCaseName = this.toString();
-	   
-	   sTestCaseName = ExcelUtility.getTestCaseName(this.toString());
-	   
-	   iTestCaseRow = ExcelUtility.getRowContains(sTestCaseName, 0);
-	   System.out.println(iTestCaseRow);
-	  
-	    
-	      Object[][] testObjArray = ExcelUtility.getTableArray(Constants.File_Path,"ContactUs",iTestCaseRow);
-	  
-	       return (testObjArray);
+		
+			Object[][] testObjArray = utilities.ExcelUtils.getTableArray(Constants.File_Path,"ContactUs");
+			
+			
+			return (testObjArray);
 	       
 	   }
 	
-	/*@AfterClass
+	@AfterClass
 	public void afterClass() {
 		driver.close();
-	}*/
+	}
 }
