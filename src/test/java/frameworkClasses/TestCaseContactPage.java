@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -54,7 +55,7 @@ public class TestCaseContactPage {
 		
 	}*/
 	@Test(dataProvider="Authentication")
-	public void contactFormFill(String am,String org,String FN,String LN,String Title,String Add1,String Add2,String city,String state,String zipcode,String phone,String Fax,String e_mail,String Model,String Issue,String SN,String comment){
+	public void contactFormFill(String am,String org,String FN,String LN,String Title,String Add1,String Add2,String city,String state,String zipcode,String phone,String Fax,String e_mail,String Model,String Issue,String SN,String comment, String status) throws InterruptedException{
 		footer.clickContact();
 		contact.selectDropdown(am);
 		contact.enterOrg(org);
@@ -74,7 +75,17 @@ public class TestCaseContactPage {
 	    contact.enterSnumber(SN);
 	    contact.enterComments(comment);
 	    contact.clickSubmit();
-	    driver.navigate().to(Constants.URL);
+	    if(status.equalsIgnoreCase("positive")){
+	    	Thread.sleep(1000);
+	    	Assert.assertEquals(driver.getTitle(), "Contact Us Online At Goodman By Filling This Form");
+	    	driver.navigate().to(Constants.URL);
+	    }
+	    else if(status.equalsIgnoreCase("negative")){
+	    	Assert.assertEquals(driver.getTitle(), "Contact Us Online At Goodman By Filling This Form");
+	    	driver.navigate().refresh();
+	    }
+	    
+	   // driver.navigate().to(Constants.URL);
 	}
 	
 	 @DataProvider
