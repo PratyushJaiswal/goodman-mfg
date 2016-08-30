@@ -22,6 +22,12 @@ import org.openqa.selenium.JavascriptExecutor;
 public class HomePage {
 	static Logger log = Logger.getLogger(homePageFactory.class);
 	WebDriver driver;
+	
+	public HomePage(WebDriver driver){
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[2]/div/div[1]/h4/a")
 	public WebElement Banner1;
 		public void clickBanner1(){
@@ -241,9 +247,6 @@ public class HomePage {
 		public void clickLoadMore(){
 			learnMore.click();
 		}
-		public HomePage(WebDriver driver){
-			this.driver = driver;
-			PageFactory.initElements(driver, this);
-		}
+		
 
 }

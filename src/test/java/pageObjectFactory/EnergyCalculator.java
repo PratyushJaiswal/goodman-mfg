@@ -50,5 +50,29 @@ public class EnergyCalculator {
 	
 	@FindBy(xpath="//div[@id='content']/div[2]/div[2]//div")
 	public List<WebElement> CoolingRate;
+	
+	@FindBys({
+		@FindBy(xpath="//div[@id='content']/div/div[1]//label"),
+		@FindBy(xpath="//div[@id='content']/div/div[2]//label")
+	})
+	public List<WebElement> interests;
+	
+	@FindBy(xpath="//div[@id='content']/h2")
+	public WebElement stepFive;
+	
+	@FindBy(xpath="//div[@id='content']/div[4]/div[1]")
+	public WebElement lastBack;
+	
+	@FindBy(xpath="//div[@id='content']/div[4]/div[2]")
+	public WebElement restart;
+	
+	@FindBy(xpath="//div[@id='table2']/a[1]")
+	public WebElement localDealer;
+	
+	@FindBy(xpath="//div[@id='table2']/a[2]")
+	public WebElement print;
+	
+	@FindBy(xpath="//div[@id='table2']/a[3]")
+	public WebElement Email;
 
 }
