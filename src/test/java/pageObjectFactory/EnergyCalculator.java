@@ -23,7 +23,7 @@ public class EnergyCalculator {
 	public WebElement state;
 	@FindBy(id="zip")
 	public WebElement zip;
-	@FindBy(id="state")
+	@FindBy(xpath="//div[@id='form']/div[4]/input")
 	public WebElement findHome;
 	@FindBy(id="next1")
 	public WebElement next;
@@ -74,5 +74,88 @@ public class EnergyCalculator {
 	
 	@FindBy(xpath="//div[@id='table2']/a[3]")
 	public WebElement Email;
-
+	
+	public void enterAddress(String text){
+		address.sendKeys(text);
+	}
+	
+	public void enterCity(String text){
+		city.sendKeys(text);
+	}
+	
+	public void enterState(String text){
+		state.sendKeys(text);
+	}
+	
+	public void enterZip(String text){
+		zip.sendKeys(text);
+	}
+	
+	public void findHome(){
+		findHome.click();
+	}
+	
+	public void Next(){
+		next.click();
+	}
+	
+	public void HomeAge(int index){
+		HomeAge.get(index).click();
+	}
+	
+	public void HomeSize(int index){
+		HomeSize.get(index).click();
+	}
+	
+	public void Windows(int index){
+		TotalWindows.get(index).click();
+	}
+	
+	public void Levels(int index){
+		FinishedLevels.get(index).click();
+	}
+	
+	public void System(int index){
+		CurrentSystem.get(index).click();
+	}
+	
+	public void clickBack(){
+		back.click();
+	}
+	
+	public void HeatingRate(int index){
+		HeatingRate.get(index).click();
+	}
+	
+	public void coolingRate(int index){
+		CoolingRate.get(index).click();
+	}
+	
+	public void Interests(int index){
+		interests.get(index).click();
+	}
+	
+	public void back(){
+		lastBack.click();
+	}
+	
+	public void restart(){
+		restart.click();
+	}
+	
+	public void Dealer(){
+		localDealer.click();
+	}
+	
+	public void Print(){
+		print.click();
+	}
+	
+	public void Email(){
+		Email.click();
+	}
+	
+	public void Header(){
+		stepFive.getText();
+	}
 }
