@@ -7,7 +7,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 public class Products {
@@ -44,6 +46,12 @@ public class Products {
 	@FindBy(xpath="//div[@id='content_C005_Col00']/div[2]/div/div/div/div")
 	public List<WebElement> ResProd;
 	
+	@FindBys({
+		@FindBy(xpath="//div[@id='content_C008_Col00']/div/div/a/div/div"),
+		@FindBy(xpath="//div[@id='content_C008_Col00']/div/div/div/a/div/span")
+	})
+	public List<WebElement> TitleResProd;
+	
 	@FindBy(xpath="//div[@id='content_C008_Col00']/div/div[1]/a/div/div/span")
 	public WebElement AC;
 	
@@ -74,6 +82,9 @@ public class Products {
 	@FindBy(xpath="//div[@id='owl-demo1']/div[1]/div/div")
 	public List<WebElement> FP;
 	
+	@FindBy(xpath="//div[@id='owl-demo1']/div[1]//div/a/h3")
+	public List<WebElement> TitleFP;
+	
 	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[1]/div[1]/h1")
 	public WebElement Header;
 	
@@ -85,6 +96,14 @@ public class Products {
 	
 	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[2]")
 	public WebElement Breadcrumb;
+	@FindBy(xpath="//div[@id='unstickyheader']/div/div[1]")
+	public WebElement ProdBreadcrumb;
+	
+	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[2]/p")
+	public WebElement ProdSummary;
+	
+	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[4]/div/h2/a")
+	public List<WebElement> TitleSubCat;
 	
 	@FindBy(id="txtproductsearch")
 	public WebElement search;
@@ -98,14 +117,17 @@ public class Products {
 	@FindBy(xpath="//div[@id='categorymenu']//div//ul//li")
 	public List<WebElement> CatList;
 	
-	@FindBy(xpath="//div[@class='gm-product-wrap']/div")
-	public List<WebElement> ProductsAC;
+	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[4]/div")
+	public List<WebElement> ProductCount;
 	
 	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[4]/div/a")
 	public List<WebElement> LearnMore;
 	
+	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[1]/h1")
+	public WebElement Titleprod;
+	
 	@FindBy(xpath="//div[@class='gm-product-wrap']/div")
-	public List<WebElement> SubCatPU;
+	public List<WebElement> SubCat;
 	
 	@FindBy(xpath="//div[@class='gm-product-wrap']/div")
 	public List<WebElement> ProdDF;
@@ -151,19 +173,35 @@ public class Products {
 	}
 	
 	public void clickSubCategory(int index){
-		SubCatPU.get(index).click();
+		SubCat.get(index).click();
 	}
 	
 	public void clickLearnMoreProd(int index){
 		LearnMore.get(index).click();
 	}
 	
-	public void getHeader(){
-		Header.getText();
+	public String getHeader(){
+		return Header.getText();
 	}
 	
-	public void getBreadcrumbs(){
-		Breadcrumb.getText();
+	public String getBreadcrumbs(){
+		return Breadcrumb.getText();
+	}
+	
+	public String getProdBreadcrumb(){
+		return ProdBreadcrumb.getText();
+	}
+	
+	public String getSubCatTitle(int index){
+		return TitleSubCat.get(index).getText();
+	}
+	
+	public String getProdTitle(){
+		return Titleprod.getText();
+	}
+	
+	public String getProdSummary(){
+		return ProdSummary.getText();
 	}
 	
 	public void clickCategoryProdRev(){
@@ -176,12 +214,14 @@ public class Products {
 	
 	public void selectSearch(String text, int index){
 		
-		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+search.getLocation().x+")");
+		//((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+search.getLocation().x+")");
 		
 		search.sendKeys(text);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println(searchSelect.size());
 		if(searchSelect.size()>= index){
 			searchSelect.get(index).click();
+			search.sendKeys(Keys.ENTER);
 		} else if (searchSelect.size()==0){
 			search.sendKeys(Keys.ENTER);
 		}else {

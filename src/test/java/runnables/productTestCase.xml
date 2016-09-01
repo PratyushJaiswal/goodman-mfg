@@ -4,7 +4,11 @@
 	<test name="Test">
 		<parameter name="browserType" value="chrome"/>
 		<classes>
-			<class name="frameworkClasses.TestCaseProductPage"></class>
+			<class name="frameworkClasses.TestCaseProductPage">
+			<methods>
+			<include name="gotoCategory"/>
+			</methods>
+			</class>
 		</classes>
 	</test>
 </suite>
