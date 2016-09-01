@@ -18,7 +18,7 @@ import pageObjectFactory.Footer;
 import utilities.Constants;
 
 public class TestCaseFooter {
-	static Logger log = Logger.getLogger(frameworkClass.class);
+	static Logger log = Logger.getLogger(TestCaseFooter.class);
 	private WebDriver driver;
 	Footer footer;
 	@Parameters("browserType")

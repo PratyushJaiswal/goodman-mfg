@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage {
-	static Logger log = Logger.getLogger(homePageFactory.class);
+	static Logger log = Logger.getLogger(HomePage.class);
 	WebDriver driver;
 	
 	public HomePage(WebDriver driver){

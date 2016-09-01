@@ -18,7 +18,7 @@ import pageObjectFactory.HeaderPF;
 import utilities.Constants;
 
 public class TestCaseHeader {
-	static Logger log = Logger.getLogger(frameworkClass.class);
+	static Logger log = Logger.getLogger(TestCaseHeader.class);
 	private WebDriver driver;
 	HeaderPF header;
 	@Parameters("browserType")

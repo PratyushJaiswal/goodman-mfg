@@ -11,14 +11,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import pageObjectFactory.Header;
+
 import pageObjectFactory.HeaderPF;
 import pageObjectFactory.Products;
-import pageObjectFactory.homePageFactory;
 import utilities.Constants;
 
 public class TestCaseProductPage {
-	static Logger log = Logger.getLogger(frameworkClass.class);
+	static Logger log = Logger.getLogger(TestCaseProductPage.class);
 	private WebDriver driver;
 	private String sTestCaseName;
 	private int iTestCaseRow;

@@ -22,7 +22,7 @@ import utilities.ExcelUtility;
 
 public class TestCaseContactPage {
 	//public String am,org,FN,LN,Title,Add1,Add2,city,state,zipcode,phone,Fax,e_mail,Model,Issue,SN,comment;
-	static Logger log = Logger.getLogger(frameworkClass.class);
+	static Logger log = Logger.getLogger(TestCaseContactPage.class);
 	private WebDriver driver;
 	private String sTestCaseName;
 	private int iTestCaseRow;
