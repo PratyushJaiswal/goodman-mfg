@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -42,12 +43,52 @@ public class TestCaseProductPage {
 		driver.get(Constants.URL);
 		product = new Products(driver);
 		header = new HeaderPF(driver);
-	  }
-	@Test
-	public void productsCategoryCount(){
+		
 		header.clickProducts();
+	  }
+	@Test(priority=1)
+	public void productsCategoryCount(){
+		
 		int count = product.ResProd.size();
-		System.out.println(count);
-		Assert.assertEquals(count, 10);
+		System.out.println("Total number of categories are: " +count);
+		Assert.assertEquals(count,9);
+	}
+	
+	@Test(priority=2)
+	public void clickBanner1(){
+		product.clickNav1();
+		product.clickLearnMore1();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		driver.navigate().back();
+	}
+	
+	@Test(priority=2)
+	public void clickBanner2(){
+		product.clickNav2();
+		product.clickLearnMore2();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		driver.navigate().back();
+	}
+	
+	@Test(priority=2)
+	public void clickBanner3(){
+		product.clickNav3();
+		product.clickLearnMore3();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		driver.navigate().back();
+	}
+	
+	@Test
+	public void FeaturedProductCount(){
+		int count=product.FP.size();
+		System.out.println("Featured Product count is: " +count);
+		Assert.assertEquals(count, 4);
+		System.out.println(product.FP.get(0).getText());
+	}
+
+	
+	@AfterClass
+	public void closeBrowser(){
+		driver.close();
 	}
 }

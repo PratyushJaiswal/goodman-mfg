@@ -53,7 +53,7 @@ public class HomePage {
 		Banner4.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='banner-fade']/ol/li[1]/a")
+	@FindBy(xpath = "//div[@id='banner-fade']/ol/li[1]/a") 
 	public WebElement NavBanner1;
 		public void clickNavban1(){
 		NavBanner1.click();

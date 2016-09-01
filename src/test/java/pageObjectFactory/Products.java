@@ -71,7 +71,7 @@ public class Products {
 	@FindBy(xpath="//div[@id='content_C008_Col00']/div/div[9]/a/div/div")
 	public WebElement DS;
 	
-	@FindBy(xpath="//div[@class='owl-wrapper-outer']//div")
+	@FindBy(xpath="//div[@id='owl-demo1']/div[1]/div/div")
 	public List<WebElement> FP;
 	
 	@FindBy(xpath="//div[@id='content_C006_Col00']/div/div[1]/div[1]/h1")
