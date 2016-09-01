@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -44,6 +45,9 @@ public class TestCaseProductPage {
 	  }
 	@Test
 	public void productsCategoryCount(){
-		
+		header.clickProducts();
+		int count = product.ResProd.size();
+		System.out.println(count);
+		Assert.assertEquals(count, 10);
 	}
 }
