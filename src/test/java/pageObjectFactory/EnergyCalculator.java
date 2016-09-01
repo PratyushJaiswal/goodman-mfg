@@ -91,11 +91,11 @@ public class EnergyCalculator {
 		zip.sendKeys(text);
 	}
 	
-	public void findHome(){
+	public void clickfindHome(){
 		findHome.click();
 	}
 	
-	public void Next(){
+	public void clickNext(){
 		next.click();
 	}
 	
