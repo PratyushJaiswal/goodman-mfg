@@ -218,7 +218,7 @@ public class Products {
 		
 		search.sendKeys(text);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		System.out.println(searchSelect.size());
+		System.out.println("Search list count is: "+searchSelect.size());
 		if(searchSelect.size()>= index){
 			searchSelect.get(index).click();
 			search.sendKeys(Keys.ENTER);
@@ -235,6 +235,7 @@ public class Products {
 	
 	public void selectCategoryList(int index){
 		CatIcon.click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(CatList.size()>=index){
 			CatList.get(index).click();
 		}else {

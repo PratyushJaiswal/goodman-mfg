@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -28,6 +29,7 @@ public class TestCaseProductPage {
 	HeaderPF header;
 	
 	@Parameters("browserType")
+	
 	@BeforeClass
 	  public void beforeClass(String browser) {
 		
@@ -44,9 +46,13 @@ public class TestCaseProductPage {
 		driver.get(Constants.URL);
 		product = new Products(driver);
 		header = new HeaderPF(driver);
+		//header.clickProducts();
 		
-		header.clickProducts();
 	  }
+	@BeforeMethod
+	public void gotoProducts(){
+		header.clickProducts();
+	}
 	@Test(priority=1)
 	public void CategoryCount(){
 		
@@ -58,42 +64,8 @@ public class TestCaseProductPage {
 		}
 	}
 	
-	@Test(priority=2)
-	public void clickBanner1(){
-		product.clickNav1();
-		product.clickLearnMore1();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
-		driver.navigate().back();
-	}
-	
-	@Test(priority=2)
-	public void clickBanner2(){
-		product.clickNav2();
-		product.clickLearnMore2();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
-		driver.navigate().back();
-	}
-	
-	@Test(priority=2)
-	public void clickBanner3(){
-		product.clickNav3();
-		product.clickLearnMore3();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
-		driver.navigate().back();
-	}
-	
-	@Test
-	public void FeaturedProductCount(){
-		int count=product.FP.size();
-		System.out.println("Featured Product count is: " +count);
-		Assert.assertEquals(count, 4);
-		//System.out.println("Product title is: " +product.TitleFP.get(0).getText());
-		for(int i=0 ; i<count;i++){
-			System.out.println(product.TitleFP.get(i).getText());
-		}
-	}
-	@Test
-	public void ProductCount(){
+	@Test (priority=2)
+	public void CatProductCount(){
 		product.clickResidentialProd(1);
 		int count=product.ProductCount.size();
 		System.out.println("Product count is: "+count);
@@ -101,11 +73,17 @@ public class TestCaseProductPage {
 		Assert.assertEquals(header, "Heat Pumps");
 		System.out.println("Header of the category is: " +header);
 		System.out.println("Breadcrumbs are: "+ product.getBreadcrumbs());
-		
+		product.selectSearch("Air", 1);
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		product.selectCategoryList(7);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+				
 	}
 	
-	@Test
-	public void subCategory(){
+	@Test(priority=3)
+	public void subCatCount(){
 		product.clickResidentialProd(3);
 		Assert.assertEquals(product.getHeader(), "Packaged Units");
 		
@@ -117,7 +95,13 @@ public class TestCaseProductPage {
 		 String subcat=product.getSubCatTitle(i);
 		 System.out.println("Title of the Sub Categories are: "+subcat);
 		}
-		product.clickSubCategory(2);
+		product.selectSearch("Air", 1);
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		product.selectCategoryList(7);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+		/*product.clickSubCategory(2);
 		Assert.assertEquals(product.getHeader(), "Gas Electric");
 		
 		//Assert.assertEquals(product.getBreadcrumbs(), "Home/Products/Packaged Units/Gas Electric");
@@ -131,27 +115,92 @@ public class TestCaseProductPage {
 		Assert.assertEquals(product.getProdTitle(), "GPG14M");
 		System.out.println("Breadcrum is: "+product.getProdBreadcrumb());
 		//Assert.assertEquals(product.getProdBreadcrumb(), "Home/Products/Packaged Units/Gas Electric/GPG14M");
-		
+*/		
 			
 	}
 	
+	@Test(priority=4)
+	public void subCatProdCount(){
+		product.clickResidentialProd(3);
+		product.clickSubCategory(2);
+		Assert.assertEquals(product.getHeader(), "Gas Electric");
+		
+		//Assert.assertEquals(product.getBreadcrumbs(), "Home/Products/Packaged Units/Gas Electric");
+		int prodcount=product.ProductCount.size();
+		System.out.println("Product count is: " +prodcount);
+		for(int i=0;i<prodcount;i++)
+		{
+		System.out.println("Title of the Product "+i+" is: "+product.getSubCatTitle(i));
+		}
+		
+		product.selectSearch("Air", 1);
+		driver.navigate().back();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		product.selectCategoryList(1);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+		
+		/*product.clickLearnMoreProd(1);
+		Assert.assertEquals(product.getProdTitle(), "GPG14M");
+		System.out.println("Breadcrum is: "+product.getProdBreadcrumb());
+		//Assert.assertEquals(product.getProdBreadcrumb(), "Home/Products/Packaged Units/Gas Electric/GPG14M");
+*/	}
 	
-	@Test
+	@Test(priority=5)
+	public void clickBanner1(){
+		product.clickNav1();
+		product.clickLearnMore1();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		//driver.navigate().back();
+	}
+	
+	@Test(priority=6)
+	public void clickBanner2(){
+		product.clickNav2();
+		product.clickLearnMore2();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		//driver.navigate().back();
+	}
+	
+	@Test(priority=7)
+	public void clickBanner3(){
+		product.clickNav3();
+		product.clickLearnMore3();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
+		//driver.navigate().back();
+	}
+	
+	@Test(priority=8)
+	public void FeaturedProductCount(){
+		int count=product.FP.size();
+		System.out.println("Featured Product count is: " +count);
+		Assert.assertEquals(count, 4);
+		//System.out.println("Product title is: " +product.TitleFP.get(0).getText());
+		for(int i=0 ; i<count;i++){
+			System.out.println(product.TitleFP.get(i).getText());
+		}
+	}
+	
+	
+	
+	
+	
+	@Test(priority=9)
 	public void gotoProdRev(){
 		product.clickProdRev();
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
-		driver.navigate().back();
+		//driver.navigate().back();
 		
 	}
 	
-	@Test
+	@Test(priority=10)
 	public void gotoEnergyCal(){
 		product.clickEnergyCalculator();
 		Assert.assertEquals(driver.getTitle(), "Save Money With The Energy Calculator From Goodman");
-		driver.navigate().back();
+		//driver.navigate().back();
 	}
 	
-	@Test
+	@Test(priority=11)
 	public void gotoCategory() throws InterruptedException{
 		product.clickResidentialProd(1);
 		Assert.assertEquals(driver.getTitle(), "Heat Pumps by Goodman Air Conditioning & Heating");
