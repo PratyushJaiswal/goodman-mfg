@@ -138,7 +138,7 @@ public class TestCaseHP {
 	
 	@Test(priority=11)
 	public void gotoProdRev(){
-		Hp.gotoProdRev();
+		Hp.clickProdRev();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
@@ -146,7 +146,7 @@ public class TestCaseHP {
 	
 	@Test(priority=12)
 	public void gotoEnergyCalc(){
-		Hp.gotoEnergyCalc();
+		Hp.clickEnergyCalc();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Save Money With The Energy Calculator From Goodman");
 		driver.navigate().back();
@@ -195,7 +195,7 @@ public class TestCaseHP {
 	@Test(priority=18)
 	public void clickProdRev2() throws InterruptedException{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Hp.gotoProdRev2();
+		Hp.clickProdRev2();
 		
 		//Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
