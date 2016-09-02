@@ -146,13 +146,13 @@ public class HomePage {
 	
 	@FindBy(xpath = "//div[@id='content_C023_Col00']//a[@href='/resources/customer-reviews']")
 	public WebElement ProdRev;
-		public void gotoProdRev(){
+		public void clickProdRev(){
 		ProdRev.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C023_Col01']//a[@href='/resources/energy-calculator']")
 	public WebElement EnergyCalc;
-		public void gotoEnergyCalc(){
+		public void clickEnergyCalc(){
 		EnergyCalc.click();
 		}
 	
@@ -216,7 +216,7 @@ public class HomePage {
 	public WebElement scroll;
 	@FindBy(xpath = "//div[@id='content_C025_Col00']/div/div/a")
 	public WebElement ProdRev2;
-		public void gotoProdRev2() throws InterruptedException{
+		public void clickProdRev2() throws InterruptedException{
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			JavascriptExecutor js =(JavascriptExecutor)driver;
 			js.executeScript("window.scrollTo(0,"+scroll.getLocation().x+")");
