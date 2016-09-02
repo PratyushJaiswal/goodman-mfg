@@ -99,23 +99,23 @@ public class EnergyCalculator {
 		next.click();
 	}
 	
-	public void HomeAge(int index){
+	public void selectHomeAge(int index){
 		HomeAge.get(index).click();
 	}
 	
-	public void HomeSize(int index){
+	public void selectHomeSize(int index){
 		HomeSize.get(index).click();
 	}
 	
-	public void Windows(int index){
+	public void selectWindows(int index){
 		TotalWindows.get(index).click();
 	}
 	
-	public void Levels(int index){
+	public void selectLevels(int index){
 		FinishedLevels.get(index).click();
 	}
 	
-	public void System(int index){
+	public void selectSystem(int index){
 		CurrentSystem.get(index).click();
 	}
 	
@@ -123,39 +123,39 @@ public class EnergyCalculator {
 		back.click();
 	}
 	
-	public void HeatingRate(int index){
+	public void selectHeatingRate(int index){
 		HeatingRate.get(index).click();
 	}
 	
-	public void coolingRate(int index){
+	public void selectCoolingRate(int index){
 		CoolingRate.get(index).click();
 	}
 	
-	public void Interests(int index){
+	public void selectInterests(int index){
 		interests.get(index).click();
 	}
 	
-	public void back(){
+	public void clickLastBack(){
 		lastBack.click();
 	}
 	
-	public void restart(){
+	public void clickRestart(){
 		restart.click();
 	}
 	
-	public void Dealer(){
+	public void clickDealer(){
 		localDealer.click();
 	}
 	
-	public void Print(){
+	public void clickPrint(){
 		print.click();
 	}
 	
-	public void Email(){
+	public void clickEmail(){
 		Email.click();
 	}
 	
-	public void Header(){
+	public void getHeader(){
 		stepFive.getText();
 	}
 }
