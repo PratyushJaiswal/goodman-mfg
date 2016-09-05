@@ -14,8 +14,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-
 import pageObjectFactory.HeaderPF;
 import pageObjectFactory.Products;
 import utilities.Constants;
@@ -65,14 +63,23 @@ public class TestCaseProductPage {
 	}
 	
 	@Test (priority=2)
-	public void CatProductCount(){
+	public void gotoCategory(){
 		product.clickResidentialProd(1);
+		Assert.assertEquals(driver.getTitle(), "Heat Pumps by Goodman Air Conditioning & Heating");
+		Assert.assertEquals(product.getHeader(), "Heat Pumps");
+		System.out.println("Breadcrumbs are: "+ product.getBreadcrumbs());
+		product.clickCategoryProdRev();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+		product.clickCategoryEnergyCal();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
 		int count=product.ProductCount.size();
 		System.out.println("Product count is: "+count);
-		String header=product.getHeader();
-		Assert.assertEquals(header, "Heat Pumps");
-		System.out.println("Header of the category is: " +header);
-		System.out.println("Breadcrumbs are: "+ product.getBreadcrumbs());
+		for(int i=0; i<count;i++)
+		{
+			System.out.println("Product title "+i+" is:" +product.getSubCatTitle(i));
+		}
 		product.selectSearch("Air", 1);
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -83,56 +90,56 @@ public class TestCaseProductPage {
 	}
 	
 	@Test(priority=3)
-	public void subCatCount(){
+	public void gotoSubCategory(){
 		product.clickResidentialProd(3);
+		Assert.assertEquals(driver.getTitle(), "Packaged Units by Goodman Air Conditioning & Heating");
 		Assert.assertEquals(product.getHeader(), "Packaged Units");
-		
-		//Assert.assertEquals(product.getBreadcrumbs(), "Home/Products/Packaged Units");
+		System.out.println("Breadcrum is: "+product.getBreadcrumbs());
 		int count=product.ProductCount.size();
 		System.out.println("Sub Category count is: " +count);
 		for(int i=0;i<count;i++)
 		{
 		 String subcat=product.getSubCatTitle(i);
-		 System.out.println("Title of the Sub Categories are: "+subcat);
+		 System.out.println("Title of the Sub Category "+(i+1)+" is: "+subcat);
 		}
+		product.clickCategoryProdRev();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+		product.clickCategoryEnergyCal();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
 		product.selectSearch("Air", 1);
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		product.selectCategoryList(7);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().back();
-		/*product.clickSubCategory(2);
-		Assert.assertEquals(product.getHeader(), "Gas Electric");
+		product.clickSubCategory(2);
+		driver.navigate().back();
 		
-		//Assert.assertEquals(product.getBreadcrumbs(), "Home/Products/Packaged Units/Gas Electric");
-		int prodcount=product.ProductCount.size();
-		System.out.println("Sub Category count is: " +prodcount);
-		for(int i=0;i<prodcount;i++)
-		{
-		System.out.println("Title of the Products are: "+product.getSubCatTitle(i));
-		}
-		product.clickLearnMoreProd(1);
-		Assert.assertEquals(product.getProdTitle(), "GPG14M");
-		System.out.println("Breadcrum is: "+product.getProdBreadcrumb());
-		//Assert.assertEquals(product.getProdBreadcrumb(), "Home/Products/Packaged Units/Gas Electric/GPG14M");
-*/		
-			
 	}
 	
 	@Test(priority=4)
-	public void subCatProdCount(){
+	public void gotoSubCatProdCount(){
 		product.clickResidentialProd(3);
-		product.clickSubCategory(2);
-		Assert.assertEquals(product.getHeader(), "Gas Electric");
+		product.clickSubCategory(3);
+		Assert.assertEquals(driver.getTitle(), "Shop for Dual Fuels from Goodman AC & Heating");
+		Assert.assertEquals(product.getHeader(), "Dual Fuel");
+		System.out.println("Breadcrum is: "+product.getBreadcrumbs());
 		
-		//Assert.assertEquals(product.getBreadcrumbs(), "Home/Products/Packaged Units/Gas Electric");
 		int prodcount=product.ProductCount.size();
 		System.out.println("Product count is: " +prodcount);
 		for(int i=0;i<prodcount;i++)
 		{
-		System.out.println("Title of the Product "+i+" is: "+product.getSubCatTitle(i));
+		System.out.println("Title of the Product "+(i+1)+" is: "+product.getSubCatTitle(i));
 		}
 		
+		product.clickCategoryProdRev();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
+		product.clickCategoryEnergyCal();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().back();
 		product.selectSearch("Air", 1);
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -140,11 +147,10 @@ public class TestCaseProductPage {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().back();
 		
-		/*product.clickLearnMoreProd(1);
-		Assert.assertEquals(product.getProdTitle(), "GPG14M");
-		System.out.println("Breadcrum is: "+product.getProdBreadcrumb());
-		//Assert.assertEquals(product.getProdBreadcrumb(), "Home/Products/Packaged Units/Gas Electric/GPG14M");
-*/	}
+		product.clickLearnMoreProd(0);
+		driver.navigate().back();
+		
+	}
 	
 	@Test(priority=5)
 	public void clickBanner1(){
@@ -181,10 +187,6 @@ public class TestCaseProductPage {
 		}
 	}
 	
-	
-	
-	
-	
 	@Test(priority=9)
 	public void gotoProdRev(){
 		product.clickProdRev();
@@ -200,32 +202,6 @@ public class TestCaseProductPage {
 		//driver.navigate().back();
 	}
 	
-	@Test(priority=11)
-	public void gotoCategory() throws InterruptedException{
-		product.clickResidentialProd(1);
-		Assert.assertEquals(driver.getTitle(), "Heat Pumps by Goodman Air Conditioning & Heating");
-		Assert.assertEquals(product.getHeader(), "Heat Pumps");
-		int count = product.ProductCount.size();
-		System.out.println("product count is: "+count);
-		for(int i=0; i<count;i++)
-		{
-			System.out.println("Product title "+i+" is:" +product.getSubCatTitle(i));
-		}
-		product.selectSearch("Air", 1);
-		
-		Thread.sleep(6000);
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
-		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
-		driver.navigate().back();
-		product.clickCategoryIcon();
-		product.selectCategoryList(3);
-		driver.navigate().back();
-		product.clickLearnMoreProd(1);
-		driver.navigate().back();
-		
-	}
-
 	
 	@AfterClass
 	public void closeBrowser(){

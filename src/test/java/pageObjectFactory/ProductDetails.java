@@ -1,11 +1,15 @@
 package pageObjectFactory;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class ProductDetails {
 	WebDriver driver;
@@ -17,7 +21,7 @@ public class ProductDetails {
 	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[1]/h1")
 	public WebElement header;
 	
-	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[2]/p")
+	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[2]")
 	public WebElement summary;
 	
 	@FindBy(xpath="//div[@id='unstickyheader']/div[2]/div[2]/div[4]/a[1]")
@@ -59,21 +63,24 @@ public class ProductDetails {
 	@FindBy(id="Message")
 	public WebElement Message;
 	
-	@FindBy(id="Submit")
+	@FindBy(xpath="//input[@id='submit']")
 	public WebElement Submit;
+	
+	@FindBy(xpath="html/body/div[5]/div/span")
+	public WebElement Ok;
 	
 	@FindBy(xpath="html/body/div[4]/div/div[1]/span/span")
 	public WebElement closeEmail;
 	
-	public void getHeader(){
-		header.getText();
+	public String getHeader(){
+		return header.getText();
 	}
 	
-	public void getSummary(){
-		summary.getText();
+	public String getSummary(){
+		return summary.getText();
 	}
 	
-	public void clickBrochur(){
+	public void clickBrochure(){
 		brochure.click();
 	}
 	
@@ -81,28 +88,62 @@ public class ProductDetails {
 		specs.click();
 	}
 	
+	public void clickOK(){
+		Ok.click();
+	}
+	
 	public void clickStickyHeader(int index){
 		StickyHeader.get(index).click();
+		if (index==0){
+			Assert.assertEquals(getProductFeature(), "Product Features");
+			System.out.println("Product Feature is: "+getProductFeature());
+		}else if(index==1){
+			Assert.assertEquals(getWarrantyHeader(), "Outstanding Limited Warranty Protection");
+			System.out.println("Warranty Header is: "+getWarrantyHeader());
+		}else if(index==2){
+			String rev1=getReview1();
+			System.out.println("Review 1 is: "+rev1);
+			Assert.assertEquals(getReview1(), rev1);
+			String rev2=getReview2();
+			System.out.println("Review 2 is: "+rev2);
+			Assert.assertEquals(getReview2(), rev2);
+		}else if(index==3){
+			System.out.println("Sharing icon count is: "+share.size());
+		}/*else if(index==4){
+			clickStickyHeader(4);
+			//clickCloseEmailBox();
+		}*/else if(index==5){
+			String windowHandle = driver.getWindowHandle();
+			ArrayList tabs = new ArrayList (driver.getWindowHandles());
+			
+			driver.switchTo().window((String) tabs.get(1));
+			driver.close();
+			
+			driver.switchTo().window(windowHandle);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}else if(index>=6){
+			System.out.println("Index is greater than the number of elements present");
+		}
 	}
 	
-	public void getProductFeature(){
-		ProdFeatHeader.getText();
+	public String getProductFeature(){
+		return ProdFeatHeader.getText();
 	}
 	
-	public void getWarrantyHeader(){
-		WarrantyHeader.getText();
+	public String getWarrantyHeader(){
+		return WarrantyHeader.getText();
 	}
 	
 	public void clickAcordionButtons(int index){
 		buttons.get(index).click();
 	}
 	
-	public void getReview1(){
-		Review1.getText();
+	public String getReview1(){
+		return Review1.getText();
 	}
 	
-	public void getReview2(){
-		Review2.getText();
+	public String getReview2(){
+		return Review2.getText();
 	}
 	
 	public void clickShare(int index){

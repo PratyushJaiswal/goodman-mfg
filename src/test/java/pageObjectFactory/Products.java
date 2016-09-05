@@ -236,6 +236,7 @@ public class Products {
 	public void selectCategoryList(int index){
 		CatIcon.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println("Category list count is: "+CatList.size());
 		if(CatList.size()>=index){
 			CatList.get(index).click();
 		}else {
