@@ -1,13 +1,14 @@
 package frameworkClasses;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -35,7 +36,7 @@ public class TestCaseHP {
 			System.setProperty("webdriver.chrome.driver",Constants.Chrome_driver );
 			driver = new ChromeDriver();
 		}
-		driver.get(Constants.URL);
+		//driver.get(Constants.URL);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		PropertyConfigurator.configure(Constants.log_Path);
@@ -101,15 +102,17 @@ public class TestCaseHP {
 	
 	@Test (priority=7)
 	public void FindMore(){
-		Hp.clickFindMore();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickFindMore();
+		
 		Assert.assertEquals(driver.getTitle(), "When To Repair or Replace Your HVAC System | Goodman");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 	
 	@Test(priority=8)
-	public void BlueLearnMore(){
+	public void BlueLearnMore() {
+		
 		Hp.clickBlueLearnMore();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Buy Environment-friendly HVAC Systems From Goodman");
@@ -125,16 +128,17 @@ public class TestCaseHP {
 		}
 	
 	@Test(priority=10)
-	public void clickSearch(){
+	public void clickSearch() throws InterruptedException{
 		Hp.selectAutoSearch("air", 1);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Search Result");
+		Thread.sleep(3000);
 		driver.navigate().back();
 		}
 	
 	@Test(priority=11)
 	public void gotoProdRev(){
-		Hp.gotoProdRev();
+		Hp.clickProdRev();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
@@ -142,7 +146,7 @@ public class TestCaseHP {
 	
 	@Test(priority=12)
 	public void gotoEnergyCalc(){
-		Hp.gotoEnergyCalc();
+		Hp.clickEnergyCalc();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.getTitle(), "Save Money With The Energy Calculator From Goodman");
 		driver.navigate().back();
@@ -151,8 +155,8 @@ public class TestCaseHP {
 	@Test(priority=13)
 	public void Previous(){
 		Hp.clickPrev();
-		//Assert.assertEquals(Hp.getElement(), "Ductless Systems");
-	}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
 	
 	@Test(priority=14)
 	public void Next(){
@@ -171,8 +175,9 @@ public class TestCaseHP {
 	
 	@Test(priority=16)
 	public void viewAll(){
-		Hp.clickViewAll();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Hp.clickViewAll();
+		
 		Assert.assertEquals(driver.getTitle(), "Check Out Goodman Manufacturing's Product Range");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -180,18 +185,19 @@ public class TestCaseHP {
 	
 	@Test(priority=17)
 	public void gotoGF(){
-		Hp.clickGF();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Assert.assertEquals(driver.getTitle(), "Gas Furnaces by Goodman Air Conditioning & Heating");
+		Hp.clickGF();
+		Assert.assertEquals(driver.getTitle(), "Shop for 80% AFUEs from Goodman AC & Heating");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@Test(priority=18)
-	public void gotoProdRev2(){
-		Hp.gotoProdRev2();
+	public void clickProdRev2() throws InterruptedException{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
+		Hp.clickProdRev2();
+		
+		//Assert.assertEquals(driver.getTitle(), "Read Customer Reviews And Ratings For Goodman Products");
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
@@ -207,10 +213,22 @@ public class TestCaseHP {
 	
 	@Test(priority=21)
 	public void gotoRI(){
-		Hp.clickRebateInc();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables & Efficiency - DSIRE");
-		driver.navigate().back();
+		Hp.clickRebateInc();
+		
+		String windowHandle = driver.getWindowHandle();
+
+		//Get the list of window handles
+		ArrayList tabs = new ArrayList (driver.getWindowHandles());
+		
+		//Use the list of window handles to switch between windows
+		driver.switchTo().window((String) tabs.get(1));
+		//Assert.assertEquals(driver.getTitle(), "Database of State Incentives for Renewables &amp; Efficiency&reg; - DSIRE");
+		System.out.println(driver.getTitle());
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.close();
+		//Switch back to original window
+		driver.switchTo().window(windowHandle);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	

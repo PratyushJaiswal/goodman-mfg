@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]">
-  <parameter name="browserType" value="chrome"/>
-  <test name="Test(failed)">
+<suite name="Failed suite [Suite]" parallel="none">
+  <parameter name="browserType" value="firefox"/>
+  <test name="Test(failed)" parallel="none">
     <parameter name="browserType" value="firefox"/>
     <classes>
+      <class name="frameworkClasses.TestCaseHP">
+        <methods>
+          <include name="viewAll"/>
+          <include name="gotoRI"/>
+          <include name="afterClass"/>
+          <include name="gotoGF"/>
+          <include name="gotoProdRev2"/>
+          <include name="beforeClass"/>
+          <include name="FindMore"/>
+        </methods>
+      </class> <!-- frameworkClasses.TestCaseHP -->
+      <class name="frameworkClasses.TestCaseContactPage">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- frameworkClasses.TestCaseContactPage -->
+      <class name="frameworkClasses.TestCaseFooter">
+        <methods>
+          <include name="Employment"/>
+          <include name="close"/>
+          <include name="ProductRecall"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- frameworkClasses.TestCaseFooter -->
+      <class name="frameworkClasses.TestCaseHeader">
+        <methods>
+          <include name="Registration"/>
+          <include name="ResourceImages"/>
+          <include name="beforeClass"/>
+          <include name="Warranty"/>
+          <include name="ProdImages"/>
+          <include name="DealerBtn"/>
+          <include name="clickRLinks"/>
+          <include name="ProdLinks"/>
+          <include name="afterClass"/>
+          <include name="SupportLinks"/>
+          <include name="SupportImages"/>
+          <include name="ResourceLinks"/>
+        </methods>
+      </class> <!-- frameworkClasses.TestCaseHeader -->
       <class name="frameworkClasses.frameworkClass">
         <methods>
           <include name="beforeClass"/>
-          <include name="beforeClass"/>
           <include name="run"/>
-          <include name="afterClass"/>
           <include name="afterClass"/>
         </methods>
       </class> <!-- frameworkClasses.frameworkClass -->
     </classes>
   </test> <!-- Test(failed) -->
-  <test name="Test2(failed)">
-    <parameter name="browserType" value="chrome"/>
-    <classes>
-      <class name="frameworkClasses.frameworkClass">
-        <methods>
-          <include name="beforeClass"/>
-          <include name="beforeClass"/>
-          <include name="run"/>
-          <include name="afterClass"/>
-          <include name="afterClass"/>
-        </methods>
-      </class> <!-- frameworkClasses.frameworkClass -->
-    </classes>
-  </test> <!-- Test2(failed) -->
 </suite> <!-- Failed suite [Suite] -->

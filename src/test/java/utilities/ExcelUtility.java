@@ -73,7 +73,7 @@ public class ExcelUtility {
 
 		   int totalRows = 1;
 
-		   int totalCols = 2;
+		   int totalCols = 17;
 
 		   tabArray=new String[totalRows][totalCols];
 

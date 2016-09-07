@@ -1,11 +1,17 @@
 package pageObjectFactory;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class Contact {
-		
+		WebDriver driver;
+		public Contact(WebDriver driver){
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
+		}
 		@FindBy(xpath="//div[@id='content_C014_Col00']/div[2]/p[2]/a[1]/strong")
 		public WebElement Warranty;
 		public void clickWarranty(){
@@ -85,7 +91,7 @@ public class Contact {
 			City.sendKeys(text);
 		}
 		
-		@FindBy(id="'txtstate")
+		@FindBy(id="txtstate")
 		public WebElement State;
 		public void enterState(String text){
 			State.sendKeys(text);
@@ -121,11 +127,11 @@ public class Contact {
 			Model.sendKeys(text);
 		}
 		
-		@FindBy(id="ddlcustomerissue")
+		@FindBy(xpath="//select[@id='ddlcustomerissue']")
 		public WebElement Issue;
-		public void enterCustIssue(String dropdownvalue){
-			Select dd= new Select(Issue);
-			dd.selectByValue(dropdownvalue);
+			public void selectCustIssue(String dropdownValue){
+				Select dd1 = new Select(Issue);
+				dd1.selectByValue(dropdownValue);
 		}
 		
 		@FindBy(id="txtserialNumber")

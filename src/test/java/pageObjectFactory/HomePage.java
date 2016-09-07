@@ -5,17 +5,29 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class HomePage {
-	static Logger log = Logger.getLogger(homePageFactory.class);
+	static Logger log = Logger.getLogger(HomePage.class);
 	WebDriver driver;
+	
+	public HomePage(WebDriver driver){
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	@FindBy(xpath = "//div[@id='banner-fade']/div/ul/li[2]/div/div[1]/h4/a")
 	public WebElement Banner1;
 		public void clickBanner1(){
@@ -41,7 +53,7 @@ public class HomePage {
 		Banner4.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='banner-fade']/ol/li[1]/a")
+	@FindBy(xpath = "//div[@id='banner-fade']/ol/li[1]/a") 
 	public WebElement NavBanner1;
 		public void clickNavban1(){
 		NavBanner1.click();
@@ -83,16 +95,19 @@ public class HomePage {
 		FindDealerBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C003_Col01']//a[@href='/resources/repair-or-replace']")
+	@FindBy(xpath = "//div[@id='content_C003_Col01']//a")
 	public WebElement FindMoreBtn;
 		public void clickFindMore(){
 		FindMoreBtn.click();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C006_Col00']//a[@href = '/about/energy-responsibility']")
-	public WebElement BlueLearMoreBtn;
-		public void clickBlueLearnMore(){
-		BlueLearMoreBtn.click();
+	@FindBy(xpath = "//div[@class='sf_cols magnetic']//a[contains( text(), 'Learn More')]")
+	public WebElement BlueLearnMoreBtn;
+		public void clickBlueLearnMore() {
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+BlueLearnMoreBtn.getLocation().x+")");
+			BlueLearnMoreBtn.click();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C013_Col00']//a[@href='#']")
@@ -112,6 +127,9 @@ public class HomePage {
 	List<WebElement> searchSelect;
 	
 		public void selectAutoSearch(String searchKey, int index){
+			
+			//Scroll to the web element
+			((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+searchBox.getLocation().x+")");
 		
 			searchBox.sendKeys(searchKey);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -128,19 +146,20 @@ public class HomePage {
 	
 	@FindBy(xpath = "//div[@id='content_C023_Col00']//a[@href='/resources/customer-reviews']")
 	public WebElement ProdRev;
-		public void gotoProdRev(){
+		public void clickProdRev(){
 		ProdRev.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C023_Col01']//a[@href='/resources/energy-calculator']")
 	public WebElement EnergyCalc;
-		public void gotoEnergyCalc(){
+		public void clickEnergyCalc(){
 		EnergyCalc.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='owl-demo']//div[@class='owl-prev']")
 	public WebElement Prev;
 	public void clickPrev(){
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+searchBox.getLocation().x+")");
 		Prev.click();
 		}
 	
@@ -164,10 +183,14 @@ public class HomePage {
 		air.getText();
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C046_Col00']//a[@href='/products']")
+	@FindBy(xpath = "//div[@class='sfContentBlock view-all-btn']//a")
 	public WebElement ViewAll;
 		public void clickViewAll(){
-		ViewAll.click();
+		//ViewAll.click();
+			
+			Actions actions = new Actions(driver);
+
+			actions.moveToElement(ViewAll).click().perform();
 		}
 	
 	@FindBy(xpath = "//div[@id='owl-demo']//a[@href='/products/air-conditioners']")
@@ -175,17 +198,30 @@ public class HomePage {
 		public void clickAC(){
 		AC.click();
 		}
-	
+	@FindBy(xpath ="//div[@id='owl-demo']/div[1]/div/div[3]/div")
+	public WebElement GasFurnace;
 	@FindBy(xpath = "//div[@class='owl-item']//a[@href='/products/gas-furnaces/80-afue-gas-furnaces']")
 	public WebElement GF;
 		public void clickGF(){
-		GF.click();
+			//((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+GasFurnace.getLocation().x+")");
+		Actions action = new Actions(driver);
+		action.moveToElement(GasFurnace).build().perform();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//Thread.sleep(5000);
+		action.moveToElement(GF).click().build().perform();
+			
 		}
 	
-	@FindBy(xpath = "//div[@id='content_C025_Col00']//a[@href='/resources/customer-reviews']")
+	@FindBy(xpath = "//div[@id='content_C025_Col00']/div/h2")
+	public WebElement scroll;
+	@FindBy(xpath = "//div[@id='content_C025_Col00']/div/div/a")
 	public WebElement ProdRev2;
-		public void gotoProdRev2(){
-		ProdRev2.click();
+		public void clickProdRev2() throws InterruptedException{
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			JavascriptExecutor js =(JavascriptExecutor)driver;
+			js.executeScript("window.scrollTo(0,"+scroll.getLocation().x+")");
+			Thread.sleep(1000);
+			ProdRev2.click();
 		}
 	
 	@FindBy(xpath = "//div[@id='content_C036_Col00']//a[@href='/about/energy-responsibility']")
@@ -211,9 +247,6 @@ public class HomePage {
 		public void clickLoadMore(){
 			learnMore.click();
 		}
-		public HomePage(WebDriver driver){
-			this.driver = driver;
-			PageFactory.initElements(driver, this);
-		}
+		
 
 }

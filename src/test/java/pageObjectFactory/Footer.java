@@ -1,10 +1,16 @@
 package pageObjectFactory;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Footer {
-	
+	WebDriver driver;
+	public Footer(WebDriver driver){
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 	@FindBy(xpath = "//div[@id='footer_TA575B027026_Col00']/div/ul/li[1]/a")
 	public WebElement FooterContact;
 		public void clickContact(){
