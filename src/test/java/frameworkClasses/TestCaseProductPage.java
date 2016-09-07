@@ -153,24 +153,27 @@ public class TestCaseProductPage {
 	}
 	
 	@Test(priority=5)
-	public void clickBanner1(){
+	public void clickBanner1() throws InterruptedException{
 		product.clickNav1();
+		Thread.sleep(3000);
 		product.clickLearnMore1();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
 		//driver.navigate().back();
 	}
 	
 	@Test(priority=6)
-	public void clickBanner2(){
+	public void clickBanner2() throws InterruptedException{
 		product.clickNav2();
+		Thread.sleep(3000);
 		product.clickLearnMore2();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
 		//driver.navigate().back();
 	}
 	
 	@Test(priority=7)
-	public void clickBanner3(){
+	public void clickBanner3() throws InterruptedException{
 		product.clickNav3();
+		Thread.sleep(3000);
 		product.clickLearnMore3();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
 		//driver.navigate().back();

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -56,7 +57,7 @@ public class TestCaseProductDetails {
 		header.clickProducts();
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void CatProdDetails() throws InterruptedException{
 		products.clickResidentialProd(1);
 		products.clickLearnMoreProd(3);
@@ -82,11 +83,11 @@ public class TestCaseProductDetails {
 		
 	}
 	
-	@Test
+	@Test(priority=2)
 	public void stickyHeader() throws InterruptedException{
 		products.clickResidentialProd(1);
 		products.clickLearnMoreProd(3);
-		pd.clickStickyHeader(5);
+		pd.clickStickyHeader(6);
 		/*Assert.assertEquals(pd.getProductFeature(), "Product Features");
 		System.out.println("Product Feature is: "+pd.getProductFeature());
 		Thread.sleep(3000);
@@ -115,7 +116,7 @@ public class TestCaseProductDetails {
 		
 	}
 	
-	@Test
+	@Test(priority=3)
 	public void ProductShare() throws InterruptedException{
 		products.clickResidentialProd(1);
 		products.clickLearnMoreProd(3);
@@ -123,28 +124,41 @@ public class TestCaseProductDetails {
 		pd.clickStickyHeader(3);
 		Thread.sleep(5000);
 		pd.clickShare(0);
+		
 		String windowHandle = driver.getWindowHandle();
 
 		ArrayList tabs = new ArrayList (driver.getWindowHandles());
 		
 		driver.switchTo().window((String) tabs.get(1));
+		Thread.sleep(5000);
 		driver.close();
 		
 		driver.switchTo().window(windowHandle);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
-	@Test(dataProvider="Authentication")
-	public void ProductEmail(String From, String To, String Subject, String Message) throws InterruptedException{
+	@Test
+	public void navigatetoProductsDetails(){
 		products.clickResidentialProd(1);
 		products.clickLearnMoreProd(3);
+	}
+	
+	@Test(dataProvider="Authentication", priority=4, dependsOnMethods="navigatetoProductsDetails")
+	public void ProductEmail(String From, String To, String Subject, String Message) throws InterruptedException{
+		//products.clickResidentialProd(1);
+		//products.clickLearnMoreProd(3);
 		pd.clickStickyHeader(4);
 		Thread.sleep(5000);
+		
 		pd.enterEmailTo(To);
 		pd.enterEmailFrom(From);
 		pd.enterSubject(Subject);
 		pd.enterMessage(Message);
 		pd.clickSubmit();
+		pd.clickOK();
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		
 	}
 	

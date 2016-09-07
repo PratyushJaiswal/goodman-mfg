@@ -93,14 +93,17 @@ public class ProductDetails {
 	}
 	
 	public void clickStickyHeader(int index){
-		StickyHeader.get(index).click();
+		
 		if (index==0){
+			StickyHeader.get(index).click();
 			Assert.assertEquals(getProductFeature(), "Product Features");
 			System.out.println("Product Feature is: "+getProductFeature());
 		}else if(index==1){
+			StickyHeader.get(index).click();
 			Assert.assertEquals(getWarrantyHeader(), "Outstanding Limited Warranty Protection");
 			System.out.println("Warranty Header is: "+getWarrantyHeader());
 		}else if(index==2){
+			StickyHeader.get(index).click();
 			String rev1=getReview1();
 			System.out.println("Review 1 is: "+rev1);
 			Assert.assertEquals(getReview1(), rev1);
@@ -108,11 +111,14 @@ public class ProductDetails {
 			System.out.println("Review 2 is: "+rev2);
 			Assert.assertEquals(getReview2(), rev2);
 		}else if(index==3){
+			Actions action = new Actions(driver);
+			action.moveToElement(StickyHeader.get(3)).build().perform();
 			System.out.println("Sharing icon count is: "+share.size());
-		}/*else if(index==4){
-			clickStickyHeader(4);
-			//clickCloseEmailBox();
-		}*/else if(index==5){
+		}else if(index==4){
+			StickyHeader.get(index).click();
+			
+		}else if(index==5){
+			StickyHeader.get(index).click();
 			String windowHandle = driver.getWindowHandle();
 			ArrayList tabs = new ArrayList (driver.getWindowHandles());
 			

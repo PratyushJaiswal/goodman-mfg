@@ -22,7 +22,7 @@ public class HeaderPF {
 	public WebElement Warranty;
 	@FindBy(xpath ="//div[@id='menu']/ul/li[6]")
 	public WebElement Registration;
-	@FindBy(xpath ="//div[@id='header_TA575B027005_Col01']/div/div/a")
+	@FindBy(xpath ="//div[@id='header_TA575B027005_Col01']//div/a")
 	public WebElement FindDealer;
 	
 	
