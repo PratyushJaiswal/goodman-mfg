@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="producttestcase" parallel="false">
+<suite name="Producttestcase" parallel="false">
 	<test name="Test">
 		<parameter name="browserType" value="chrome"/>
 		<classes>
-			<class name="frameworkClasses.TestCaseProductDetails">
-			<methods>
-			<include name="ProductEmail"/>
-			</methods>
-			</class>
+			<class name="frameworkClasses.TestCaseProductDetails"/>
+			<class name="frameworkClasses.TestCaseProductPage"/>
+			<!-- <methods>
+			<include name="clickBanner3"/>
+			</methods> -->
+			<!-- </class>  -->
 		</classes>
 	</test>
 </suite>
